@@ -35,5 +35,11 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('refresh','refresh');
 })->middleware('auth:api');
 
+Route::group(['middleware' => ['web','auth:api']], function()
+{
+    Route::apiResource('items', ItemController::class);
+});
+
+
 
 
